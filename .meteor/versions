@@ -6,7 +6,6 @@ babel-runtime@0.1.11
 base64@1.0.9
 binary-heap@1.0.9
 blaze@2.1.8
-blaze-html-templates@1.0.4
 blaze-tools@1.0.9
 boilerplate-generator@1.0.9
 caching-compiler@1.0.6
@@ -46,6 +45,8 @@ modules@0.7.6
 modules-runtime@0.7.6
 mongo@1.1.12
 mongo-id@1.0.5
+mwc:synthesis@1.0.41
+mwc:synthesis-compiler@1.0.39
 npm-mongo@1.5.49
 observe-sequence@1.0.12
 ordered-dict@1.0.8
@@ -60,7 +61,6 @@ spacebars@1.0.12
 spacebars-compiler@1.0.12
 standard-minifier-css@1.2.0
 standard-minifier-js@1.2.0
-templating@1.1.14
 templating-tools@1.0.4
 tracker@1.1.0
 ui@1.0.11
