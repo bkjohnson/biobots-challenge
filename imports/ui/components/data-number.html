@@ -1,0 +1,52 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<!-- Used to display numbers that don't have a maximum value. -->
+<dom-module id="data-number">
+  <template>
+    <style>
+        :host {
+            width: auto;
+            height: 75px;
+            display: inline-block;
+        }
+
+        .num {
+            text-align: center;
+            color: #26A69A;
+            height: 100%;
+            font-size: 16pt;
+        }
+
+        .units {
+            font-size: 10pt;
+            color: black;
+            display: inline-block;
+        }
+    </style>
+
+    <div>
+        <p>{{label}}<p>
+        <div class = "num">
+            {{val}}
+            <div class="units">
+                {{units}}
+            </div>
+        </div>
+    </div>
+  </template>
+
+  <script>
+      Polymer({
+          is: 'data-number',
+
+          properties: {
+              label: String,
+              val: Number,
+              units: {
+                type: String,
+                value: ""
+            }
+          }
+      });
+  </script>
+</dom-module>
