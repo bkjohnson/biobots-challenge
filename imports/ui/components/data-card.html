@@ -1,0 +1,45 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+
+
+<dom-module id="data-card">
+  <template>
+    <style>
+        :host{
+            display: inline-block;
+            margin: 5px;
+            --paper-card-background-color: #ECEFF1;
+            --paper-card-header: {
+                height: 50px;
+                background-color: #29B6F6;
+                min-width: 160px;
+            }
+        }
+
+        paper-card {
+            --paper-card-header-image-text: {
+                padding: 8px;
+                text-align: center;
+            }
+        }
+    </style>
+
+    <div>
+        <paper-card heading="{{label}}" >
+            <content></content>
+        </paper-card>
+    </div>
+  </template>
+
+  <script>
+
+      Polymer({
+          is: 'data-card',
+
+          properties: {
+              label: String
+          }
+      });
+
+  </script>
+</dom-module>
