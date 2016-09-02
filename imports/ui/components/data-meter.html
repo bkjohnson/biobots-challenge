@@ -36,6 +36,11 @@ Gives a visual indicator of how close the number is to the maximum. -->
                 background: #1565C0;
             }
 
+            .vertical {
+                width: 75px;
+                height: 75px;
+            }
+
             .display{
                 text-align: center;
                 padding: 12px;
@@ -44,8 +49,10 @@ Gives a visual indicator of how close the number is to the maximum. -->
 
         </style>
         <p class="display">{{val}}<p>
-        <meter id="data" max="{{cap}}" value="{{val}}"></meter>
-        <paper-tooltip for="data" position="top">{{val}} out of {{cap}} {{units}}</paper-tooltip>
+        <div class="vertical">
+            <meter id="data" max="{{cap}}" value="{{val}}"></meter>
+            <paper-tooltip for="data" position="top">{{val}} out of {{cap}} {{units}}</paper-tooltip>
+        </div>
     </template>
 
     <script>
