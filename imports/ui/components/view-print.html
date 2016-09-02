@@ -1,0 +1,31 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+
+<link rel="import" href="../components/data-card.html">
+<link rel="import" href="../components/data-meter.html">
+<link rel="import" href="../components/data-number.html">
+
+<!-- Used to display the groups of data for a single print. -->
+<dom-module id="view-print">
+  <template>
+    <style>
+        paper-card {
+            margin: 6px;
+            padding: 6px;
+        }
+    </style>
+
+    <paper-card>
+        <data-card label="Pressure">
+          <data-meter cap="120" val="50" units="PSI"></data-meter>
+          <data-meter cap="120" val="80" units="PSI"></data-meter>
+        </data-card>
+    </paper-card>
+  </template>
+
+  <script>
+      Polymer({
+          is: 'view-print',
+      });
+  </script>
+</dom-module>
