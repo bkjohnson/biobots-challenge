@@ -1,5 +1,6 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
-<!-- 
+<link rel="import" href="../bower_components/paper-tooltip/paper-tooltip.html">
+<!--
 Used to display numbers that have a maximum value (i.e. percentages).
 Gives a visual indicator of how close the number is to te maximum. -->
 <dom-module id="data-meter">
@@ -40,9 +41,11 @@ Gives a visual indicator of how close the number is to te maximum. -->
                 padding: 12px;
                 color: #26A69A;
             }
+
         </style>
         <p class="display">{{val}}<p>
         <meter id="data" max="{{cap}}" value="{{val}}"></meter>
+        <paper-tooltip for="data" position="top">{{val}} out of {{cap}} {{units}}</paper-tooltip>
     </template>
 
     <script>
@@ -51,7 +54,8 @@ Gives a visual indicator of how close the number is to te maximum. -->
 
           properties: {
               cap: Number,
-              val: Number
+              val: Number,
+              units: String
           }
         });
     </script>
