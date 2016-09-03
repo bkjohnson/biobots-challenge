@@ -16,10 +16,11 @@
 
           properties: {
               data: Object,
+              serial: Number
           },
 
           attached: function(){
-              Meteor.call('findUserData', (err, result) => {
+              Meteor.call('findUserData', this.serial, (err, result) => {
                   this.data = result;
               });
           }
