@@ -29,8 +29,8 @@
         </style>
 
         <paper-card>
-            <paper-input no-label-float label="Serial"></paper-input>
-            <paper-button raised>Search</paper-button>
+            <paper-input id="termInput" no-label-float label="Serial"></paper-input>
+            <paper-button raised on-tap="notifyTermChanged">Search</paper-button>
         </paper-card>
     </template>
 
@@ -40,6 +40,19 @@
 
             properties: {
                 term: String
+            },
+
+            notifyTermChanged: function(e){
+                this.term = this.$.termInput.value;
+                let args = {};
+
+                if (!isNaN(this.term)){     // The term is a number -> serial
+                    args = {serial: parseInt(this.term, 10)};
+                }
+                else {                      // The term is a string -> email
+                    args = {email: this.term};
+                }
+                this.fire("term-changed", args);    // fire a custom event with args
             }
         });
     </script>

@@ -17,7 +17,7 @@
                 --paper-spinner-stroke-width: 6px;
             }
       </style>
-      <user-search></user-search>
+      <user-search id="search"></user-search>
       <data-label size="65%" data="[[combineEmailAndSerial(email, serial)]]"></data-label>
       <data-label size="25%" data="[[printCount]]"></data-label>
 
@@ -49,12 +49,23 @@
               _email: String    // Used to store the email address, since this.email is read-only
           },
 
+          listeners: {
+              "search.term-changed": "termChanged"
+          },
+
+          termChanged: function(e){
+              if (e.detail.serial != null){
+                  this.serial = e.detail.serial;
+                  this.hasEmail = false; // force email lookup again
+                  this.loadData(this.serial);
+              }
+          },
+
           lookupEmail: function(hasEmail, serial){
               if (hasEmail == false){
                   Meteor.call('findUserEmail', serial, (err, result) => {
                       this._email = result;
                       this.hasEmail = true;
-                      console.log(this._email);
                   });
               }
               return this._email;
@@ -65,13 +76,18 @@
               return [{ "email": email}, {"serial": serial} ];
           },
 
-          attached: function(){
+          loadData: function(serial){
               this.loading = true;
-              Meteor.call('findUserData', this.serial, (err, result) => {
+              this.data = [];
+              Meteor.call('findUserData', serial, (err, result) => {
                   this.data = result;
                   this.printCount = [{"prints": this.data.length}];
                   this.loading = false;
               });
+          },
+
+          attached: function(){
+              this.loadData(this.serial);
           }
       });
   </script>
