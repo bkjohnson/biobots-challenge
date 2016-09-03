@@ -4,6 +4,7 @@
 <link rel="import" href="../components/data-card.html">
 <link rel="import" href="../components/data-meter.html">
 <link rel="import" href="../components/data-number.html">
+<link rel="import" href="../components/data-label.html">
 
 <!-- Used to display the groups of data for a single print. -->
 <dom-module id="view-print">
@@ -24,6 +25,9 @@
     </style>
 
     <paper-card>
+        <data-label size="65%" data='[{"input": "file1.gcode"}, {"output": "file1_output.gcode"}]'></data-label>
+        <data-label size="30%" data='[{"wellplates": 12}]'></data-label>
+
         <data-card label="Pressure">
           <data-meter cap="120" val="50" units="PSI"></data-meter>
           <data-meter cap="120" val="80" units="PSI"></data-meter>

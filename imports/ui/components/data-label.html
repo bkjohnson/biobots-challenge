@@ -1,0 +1,72 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+
+<dom-module id="data-label">
+  <template>
+    <style>
+        :host{
+            font-size: var(--label-font, 16pt);
+        }
+
+        paper-card {
+            margin: 6px;
+        }
+
+        table {
+            border-spacing: 0;
+        }
+
+        .row-label{
+            padding: 4px;
+            background-color: var(--label-color, #29B6F6);
+            text-align: right;
+            border-radius: 2px 0 0 2px; // round the top left and bottom left corners
+        }
+    </style>
+
+    <paper-card style="width: {{size}}">
+        <table>
+            <template is="dom-repeat" items="{{labels}}">
+                <tr>
+                    <td class="row-label">{{item.label}}:</td>
+                    <td>{{item.value}}</td>
+                </tr>
+            </template>
+        </table>
+    </paper-card>
+  </template>
+
+  <script>
+      Polymer({
+          is: 'data-label',
+
+          properties: {
+              data: {
+                  type: Object,
+                  reflectToAttribute: true
+              },
+              labels: Object,
+              temp: Object
+          },
+
+          attributeChanged: function() {
+               // I need the temporary array because if I
+               // put things into this.labels 1 by 1, the dom-repeat won't be able
+               // to reach them for some reason.
+              this.temp = [];
+              let key = "";
+
+              if (this.data != null){
+                  this.data.forEach(function(value, index){
+                      key = Object.keys(value)[0];
+                      let label = {};   // declare new one each time because it is a reference
+                      label.label = key;
+                      label.value = value[key];
+                      this.temp[index] = label;
+                  }, this);
+              }
+              this.labels = this.temp;
+          },
+      });
+  </script>
+</dom-module>
