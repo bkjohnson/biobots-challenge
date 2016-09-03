@@ -16,10 +16,28 @@
                 height: 60px;
                 --paper-spinner-stroke-width: 6px;
             }
+            .notice {
+                margin: auto;
+                max-width: 325px;
+                display: block;
+                padding: 12px;
+                --header-color: #FFA726;
+            }
+            .notice-text{
+                padding: 8px;
+                font-size: 14pt;
+            }
       </style>
       <user-search id="search"></user-search>
-      <data-label size="65%" data="[[combineEmailAndSerial(email, serial)]]"></data-label>
-      <data-label size="25%" data="[[printCount]]"></data-label>
+      <template is="dom-if" if="{{noData}}">
+          <data-card class="notice" label="Error">
+            <p class="notice-text">
+                There are no results for your search term.  Please try a different one.
+            </p>
+          </data-card>
+      </template>
+      <data-label id="userLabel" size="65%" data="[[combineEmailAndSerial(email, serial)]]"></data-label>
+      <data-label id="printLabel" size="25%" data="[[printCount]]"></data-label>
 
       <template is="dom-if" if="{{loading}}">
         <paper-spinner-lite active></paper-spinner-lite>
@@ -46,7 +64,8 @@
                   type: Boolean,
                   value: false
               },
-              _email: String    // Used to store the email address, since this.email is read-only
+              _email: String,    // Used to store the email address, since this.email is read-only
+              noData: Boolean
           },
 
           listeners: {
@@ -81,6 +100,11 @@
               this.data = [];
               Meteor.call('findUserData', serial, (err, result) => {
                   this.data = result;
+
+                  this.noData = (this.data.length == 0);
+                  this.$.printLabel.hidden = this.noData;   // hide these labels if there is no data to show
+                  this.$.userLabel.hidden = this.noData;
+
                   this.printCount = [{"prints": this.data.length}];
                   this.loading = false;
               });
