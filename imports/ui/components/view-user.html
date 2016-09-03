@@ -8,6 +8,7 @@
   <template>
       <user-search></user-search>
       <data-label size="65%" data="[[combineEmailAndSerial(email, serial)]]"></data-label>
+      <data-label size="25%" data="[[printCount]]"></data-label>
 
     <template is="dom-repeat" items="{{data}}">
         <view-print data ='{{item}}'></view-print>
@@ -21,6 +22,7 @@
           properties: {
               data: Object,
               serial: Number,
+              printCount: Object,
               email: {
                   type: String,
                   computed: 'lookupEmail(hasEmail, serial)' // makes this.email read-only
@@ -51,6 +53,7 @@
           attached: function(){
               Meteor.call('findUserData', this.serial, (err, result) => {
                   this.data = result;
+                  this.printCount = [{"prints": this.data.length}];
               });
           }
       });
