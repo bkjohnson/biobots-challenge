@@ -13,6 +13,14 @@
             margin: 6px;
             padding: 6px;
         }
+
+        .live {
+            --meter-color: #26A69A;
+        }
+
+        .dead {
+            --meter-color: #ef5350;
+        }
     </style>
 
     <paper-card>
@@ -29,6 +37,12 @@
         <data-card label="Crosslinking">
             <data-meter cap="100" val="80" units="%"></data-meter>
             <data-number label="Duration" val="1351" units="ms"></data-number>
+        </data-card>
+
+        <data-card label="Live/Dead & Elasticity">
+            <data-meter class="live" cap="100" val="90" units="%"></data-meter>
+            <data-meter class="dead" cap="100" val="6" units="%"></data-meter>
+            <data-number label="Elasticity" val="1231" units="kPa"></data-number>
         </data-card>
     </paper-card>
   </template>
