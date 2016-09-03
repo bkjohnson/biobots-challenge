@@ -34,8 +34,8 @@
         </data-card>
 
         <data-card label="Resolution">
-            <data-meter cap="1" val="0.4" units="mm"></data-meter>
-            <data-number label="Layers" val="31"></data-number>
+            <data-meter cap="1" val="[[layerHeight]]" units="mm"></data-meter>
+            <data-number label="Layers" val="[[layerNum]]"></data-number>
         </data-card>
 
         <data-card label="Crosslinking">
@@ -60,7 +60,9 @@
               files: Object,
               wellplates: Object,
               ex1p: Number,
-              ex2p: Number
+              ex2p: Number,
+              layerHeight: Number,
+              layerNum: Number
           },
 
           attached: function(){
@@ -71,6 +73,8 @@
               this.wellplates = [{"wellplates": this.data.print_info.wellplate}];
               this.ex1p = this.data.print_info.pressure.extruder1;
               this.ex2p = this.data.print_info.pressure.extruder2;
+              this.layerHeight = this.data.print_info.resolution.layerHeight;
+              this.layerNum = this.data.print_info.resolution.layerNum;
           }
       });
   </script>
