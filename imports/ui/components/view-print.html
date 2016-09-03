@@ -44,9 +44,9 @@
         </data-card>
 
         <data-card label="Live/Dead & Elasticity">
-            <data-meter class="live" cap="100" val="90" units="%"></data-meter>
-            <data-meter class="dead" cap="100" val="6" units="%"></data-meter>
-            <data-number label="Elasticity" val="1231" units="kPa"></data-number>
+            <data-meter class="live" cap="100" val="[[live]]" units="%"></data-meter>
+            <data-meter class="dead" cap="100" val="[[dead]]" units="%"></data-meter>
+            <data-number label="Elasticity" val="[[elasticity]]" units="kPa"></data-number>
         </data-card>
     </paper-card>
   </template>
@@ -64,7 +64,10 @@
               layerHeight: Number,
               layerNum: Number,
               crosslinkIntensity: Number,
-              crosslinkDuration: Number
+              crosslinkDuration: Number,
+              live: Number,
+              dead: Number,
+              elasticity: Number
           },
 
           attached: function(){
@@ -79,6 +82,9 @@
               this.layerNum = this.data.print_info.resolution.layerNum;
               this.crosslinkIntensity = this.data.print_info.crosslinking.cl_intensity;
               this.crosslinkDuration = this.data.print_info.crosslinking.cl_duration;
+              this.live = this.data.print_data.livePercent;
+              this.dead = this.data.print_data.deadPercent;
+              this.elasticity = this.data.print_data.elasticity;
 
           }
       });
