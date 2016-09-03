@@ -25,8 +25,8 @@
     </style>
 
     <paper-card>
-        <data-label size="65%" data='[{"input": "file1.gcode"}, {"output": "file1_output.gcode"}]'></data-label>
-        <data-label size="30%" data='[{"wellplates": 12}]'></data-label>
+        <data-label size="65%" data='[[files]]'></data-label>
+        <data-label size="30%" data='[[wellplates]]'></data-label>
 
         <data-card label="Pressure">
           <data-meter cap="120" val="[[ex1p]]" units="PSI"></data-meter>
@@ -57,11 +57,18 @@
 
           properties: {
               data: Object,
+              files: Object,
+              wellplates: Object,
               ex1p: Number,
               ex2p: Number
           },
 
           attached: function(){
+              this.files =
+                    [{"input": this.data.print_info.files.input},
+                     {"output": this.data.print_info.files.output}];
+
+              this.wellplates = [{"wellplates": this.data.print_info.wellplate}];
               this.ex1p = this.data.print_info.pressure.extruder1;
               this.ex2p = this.data.print_info.pressure.extruder2;
           }
