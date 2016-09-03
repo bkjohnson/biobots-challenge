@@ -49,6 +49,10 @@
               temp: Object
           },
 
+          capitalize: function(string){
+              return string.charAt(0).toUpperCase() + string.slice(1);
+          },
+
           attributeChanged: function() {
                // I need the temporary array because if I
                // put things into this.labels 1 by 1, the dom-repeat won't be able
@@ -60,7 +64,7 @@
                   this.data.forEach(function(value, index){
                       key = Object.keys(value)[0];
                       let label = {};   // declare new one each time because it is a reference
-                      label.label = key;
+                      label.label = this.capitalize(key);
                       label.value = value[key];
                       this.temp[index] = label;
                   }, this);
