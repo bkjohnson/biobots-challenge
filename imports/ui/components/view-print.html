@@ -39,8 +39,8 @@
         </data-card>
 
         <data-card label="Crosslinking">
-            <data-meter cap="100" val="80" units="%"></data-meter>
-            <data-number label="Duration" val="1351" units="ms"></data-number>
+            <data-meter cap="100" val="[[crosslinkIntensity]]" units="%"></data-meter>
+            <data-number label="Duration" val="[[crosslinkDuration]]" units="ms"></data-number>
         </data-card>
 
         <data-card label="Live/Dead & Elasticity">
@@ -62,7 +62,9 @@
               ex1p: Number,
               ex2p: Number,
               layerHeight: Number,
-              layerNum: Number
+              layerNum: Number,
+              crosslinkIntensity: Number,
+              crosslinkDuration: Number
           },
 
           attached: function(){
@@ -75,6 +77,9 @@
               this.ex2p = this.data.print_info.pressure.extruder2;
               this.layerHeight = this.data.print_info.resolution.layerHeight;
               this.layerNum = this.data.print_info.resolution.layerNum;
+              this.crosslinkIntensity = this.data.print_info.crosslinking.cl_intensity;
+              this.crosslinkDuration = this.data.print_info.crosslinking.cl_duration;
+
           }
       });
   </script>
