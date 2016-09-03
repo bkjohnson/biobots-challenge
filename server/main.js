@@ -17,3 +17,10 @@ Meteor.startup(() => {
         console.log("Database loaded");
     }
 });
+
+Meteor.methods({
+    findUserData: function () {
+        // Temporary: return a single user from the json data
+        return BiobotsData.find({"user_info.serial": 1, "print_info.pressure.extruder1": 6}).fetch();
+    }
+});

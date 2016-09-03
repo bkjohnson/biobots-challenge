@@ -5,7 +5,9 @@
 <!-- Used to display all of the print records belonging to a single user. -->
 <dom-module id="view-user">
   <template>
-    <view-print data='{"print_info": {"pressure": {"extruder1": 29.0,"extruder2": 57.0}}}'></view-print>
+    <template is="dom-repeat" items="{{data}}">
+        <view-print data ='{{item}}'></view-print>
+    </template>
   </template>
 
   <script>
@@ -14,6 +16,12 @@
 
           properties: {
               data: Object,
+          },
+
+          attached: function(){
+              Meteor.call('findUserData', (err, result) => {
+                  this.data = result;
+              });
           }
       });
   </script>
