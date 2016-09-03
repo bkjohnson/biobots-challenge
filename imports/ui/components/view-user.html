@@ -7,6 +7,8 @@
 <dom-module id="view-user">
   <template>
       <user-search></user-search>
+      <data-label size="65%" data="[[combineEmailAndSerial(email, serial)]]"></data-label>
+
     <template is="dom-repeat" items="{{data}}">
         <view-print data ='{{item}}'></view-print>
     </template>
@@ -18,7 +20,32 @@
 
           properties: {
               data: Object,
-              serial: Number
+              serial: Number,
+              email: {
+                  type: String,
+                  computed: 'lookupEmail(hasEmail, serial)' // makes this.email read-only
+              },
+              hasEmail: {
+                  type: Boolean,
+                  value: false
+              },
+              _email: String    // Used to store the email address, since this.email is read-only
+          },
+
+          lookupEmail: function(hasEmail, serial){
+              if (hasEmail == false){
+                  Meteor.call('findUserEmail', serial, (err, result) => {
+                      this._email = result;
+                      this.hasEmail = true;
+                      console.log(this._email);
+                  });
+              }
+              return this._email;
+          },
+
+          combineEmailAndSerial: function(email, serial){
+              email = this.lookupEmail(this.hasEmail, serial);
+              return [{ "email": email}, {"serial": serial} ];
           },
 
           attached: function(){

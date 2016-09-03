@@ -21,5 +21,13 @@ Meteor.startup(() => {
 Meteor.methods({
     findUserData: function (serial) {
         return BiobotsData.find({"user_info.serial": serial}).fetch();
+    },
+
+    findUserEmail: function(serial) {
+        let emailList = _.uniq(BiobotsData.find({"user_info.serial": serial}).fetch().map(function(data) {
+            return data.user_info.email;
+            }), true);
+
+        return emailList[0];
     }
 });
