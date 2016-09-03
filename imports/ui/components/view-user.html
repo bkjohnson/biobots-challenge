@@ -1,10 +1,12 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 
 <link rel="import" href="../components/view-print.html">
+<link rel="import" href="../components/user-search.html">
 
 <!-- Used to display all of the print records belonging to a single user. -->
 <dom-module id="view-user">
   <template>
+      <user-search></user-search>
     <template is="dom-repeat" items="{{data}}">
         <view-print data ='{{item}}'></view-print>
     </template>

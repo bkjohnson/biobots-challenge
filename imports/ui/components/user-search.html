@@ -1,0 +1,46 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+
+<dom-module id="user-search">
+    <template>
+        <style>
+            :host {
+                  margin: auto;
+                  max-width: 400px;
+                  display: block;
+            }
+
+            paper-card{
+                padding: 8px;
+            }
+
+            paper-input {
+                display: inline-flex;
+                padding: 0px;
+                margin: 0px 8px;
+            }
+
+            paper-button{
+                padding: 8px 8px;
+                background-color: #29B6F6;
+            }
+        </style>
+
+        <paper-card>
+            <paper-input no-label-float label="Serial"></paper-input>
+            <paper-button raised>Search</paper-button>
+        </paper-card>
+    </template>
+
+    <script>
+        Polymer({
+            is: 'user-search',
+
+            properties: {
+                term: String
+            }
+        });
+    </script>
+</dom-module>
