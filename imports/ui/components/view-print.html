@@ -29,8 +29,8 @@
         <data-label size="30%" data='[{"wellplates": 12}]'></data-label>
 
         <data-card label="Pressure">
-          <data-meter cap="120" val="50" units="PSI"></data-meter>
-          <data-meter cap="120" val="80" units="PSI"></data-meter>
+          <data-meter cap="120" val="[[ex1p]]" units="PSI"></data-meter>
+          <data-meter cap="120" val="[[ex2p]]" units="PSI"></data-meter>
         </data-card>
 
         <data-card label="Resolution">
@@ -54,6 +54,17 @@
   <script>
       Polymer({
           is: 'view-print',
+
+          properties: {
+              data: Object,
+              ex1p: Number,
+              ex2p: Number
+          },
+
+          attached: function(){
+              this.ex1p = this.data.print_info.pressure.extruder1;
+              this.ex2p = this.data.print_info.pressure.extruder2;
+          }
       });
   </script>
 </dom-module>
