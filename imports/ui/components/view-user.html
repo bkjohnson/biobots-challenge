@@ -3,6 +3,8 @@
 
 <link rel="import" href="../components/view-print.html">
 <link rel="import" href="../components/user-search.html">
+<link rel="import" href="../components/filter-print.html">
+
 
 <!-- Used to display all of the print records belonging to a single user. -->
 <dom-module id="view-user">
@@ -42,6 +44,8 @@
       <template is="dom-if" if="{{loading}}">
         <paper-spinner-lite active></paper-spinner-lite>
       </template>
+
+      <filter-print></filter-print>
     <template is="dom-repeat" items="{{data}}">
         <view-print data ='{{item}}'></view-print>
     </template>

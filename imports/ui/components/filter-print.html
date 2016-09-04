@@ -1,0 +1,27 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../bower_components/paper-slider/paper-slider.html">
+
+<link rel="import" href="../components/data-card.html">
+
+<dom-module id="filter-print">
+    <template>
+        <style>
+            paper-slider{
+                min-width: 300px;
+            }
+        </style>
+        <paper-card>
+            <data-card label="Pressure">
+                <paper-slider max="120"></paper-slider>
+                <paper-slider max="120"></paper-slider>
+            </data-card>
+        </paper-card>
+    </template>
+
+    <script>
+        Polymer({
+            is: 'filter-print'
+        });
+    </script>
+</dom-module>
