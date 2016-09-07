@@ -43,7 +43,7 @@
         <paper-spinner-lite active></paper-spinner-lite>
       </template>
 
-      <filter-print></filter-print>
+      <filter-print id="filterInput"></filter-print>
     <template is="dom-repeat" items="{{data}}">
         <view-print data ='{{item}}'></view-print>
     </template>
@@ -71,6 +71,18 @@
           },
 
           listeners: {
+              "filterInput.filter-data": "filterData"
+          },
+
+          filterData: function(e){
+              let sample = this.data.filter(function(object){
+                  if (object.print_info.pressure.extruder1 == e.detail.ex1p &&
+                  object.print_info.pressure.extruder2 == e.detail.ex2p){
+                      return true;
+                  }
+                  return false;
+              });
+              this.data = sample;
           },
 
           lookupEmail: function(hasEmail, serial){

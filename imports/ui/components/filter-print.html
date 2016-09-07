@@ -1,6 +1,7 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/paper-card/paper-card.html">
 <link rel="import" href="../bower_components/paper-slider/paper-slider.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
 
 <link rel="import" href="../components/data-card.html">
 
@@ -17,6 +18,17 @@
                 min-width: 300px;
             }
 
+            paper-button{
+                float: left;
+                width: 96%;
+                display: block;
+                margin: 8px;
+            }
+
+            paper-button.filter{
+                background-color: var(--paper-teal-400);
+            }
+
             .card{
                 float: left;
             }
@@ -31,13 +43,26 @@
                         </data-card>
                     </td>
                 </tr>
+                <tr>
+                    <td>
+                        <paper-button class="filter" raised on-tap="filterData">Filter</paper-button>
+                    </td>
+                </tr>
             <table>
         </paper-card>
     </template>
 
     <script>
         Polymer({
-            is: 'filter-print'
+            is: 'filter-print',
+
+            filterData: function(e){
+                let ex1p = this.$.ex1pressure.value;
+                let ex2p = this.$.ex2pressure.value;
+
+                let args={"ex1p": ex1p, "ex2p": ex2p};
+                this.fire("filter-data", args);
+            }
         });
     </script>
 </dom-module>
