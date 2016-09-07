@@ -2,7 +2,6 @@
 <link rel="import" href="../bower_components/paper-spinner/paper-spinner-lite.html">
 
 <link rel="import" href="../components/view-print.html">
-<link rel="import" href="../components/user-search.html">
 <link rel="import" href="../components/filter-print.html">
 
 
@@ -30,7 +29,6 @@
                 font-size: 14pt;
             }
       </style>
-      <user-search id="search"></user-search>
       <template is="dom-if" if="{{noData}}">
           <data-card class="notice" label="Error">
             <p class="notice-text">
@@ -73,15 +71,6 @@
           },
 
           listeners: {
-              "search.term-changed": "termChanged"
-          },
-
-          termChanged: function(e){
-              if (e.detail.serial != null){
-                  this.serial = e.detail.serial;
-                  this.hasEmail = false; // force email lookup again
-                  this.loadData(this.serial);
-              }
           },
 
           lookupEmail: function(hasEmail, serial){

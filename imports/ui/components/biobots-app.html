@@ -1,0 +1,30 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../components/user-search.html">
+<link rel="import" href="../components/view-user.html">
+
+<dom-module id="biobots-app">
+    <template>
+        <style>
+        </style>
+        <user-search id="search"></user-search>
+        <view-user id="userView"></view-user>
+    </template>
+
+    <script>
+        Polymer({
+            is: 'biobots-app',
+
+            listeners: {
+                "search.term-changed": "termChanged",
+            },
+            termChanged: function(e){
+                if (e.detail.serial != null){
+                    this.$.userView.serial = e.detail.serial;
+                    this.$.userView.hasEmail = false; // force email lookup again
+                    this.$.userView.loadData(e.detail.serial);
+                }
+            }
+        });
+    </script>
+</dom-module>
