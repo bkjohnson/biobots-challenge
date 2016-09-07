@@ -77,6 +77,7 @@ Custom property | Description | Default
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
+        margin-top: var(--paper-slider-margin, auto);
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
         --paper-progress-active-color: var(--paper-slider-active-color, --google-blue-700);
         --paper-progress-secondary-color: var(--paper-slider-secondary-color, --google-blue-300);
@@ -386,6 +387,16 @@ Custom property | Description | Default
         },
 
         /**
+         * If true, the pin will always be shown and the margin will be adjusted
+         * to accomodate it.
+         */
+        alwaysShowPin: {
+          type: Boolean,
+          value: false,
+          notify: true
+        },
+
+        /**
          * The number that represents the current secondary progress.
          */
         secondaryProgress: {
@@ -517,7 +528,9 @@ Custom property | Description | Default
 
       _resetKnob: function() {
         this.cancelDebouncer('expandKnob');
-        this._setExpand(false);
+        if (!this.alwaysShowPin){
+            this._setExpand(false);
+        }
       },
 
       _positionKnob: function(ratio) {
@@ -656,9 +669,13 @@ Custom property | Description | Default
       },
 
       _getClassNames: function() {
+        if (this.alwaysShowPin){
+            this.customStyle['--paper-slider-margin'] = '30px';
+            this.updateStyles();
+        }
         return this._mergeClasses({
           disabled: this.disabled,
-          pin: this.pin,
+          pin: this.pin || this.alwaysShowPin,
           snaps: this.snaps,
           ring: this.immediateValue <= this.min,
           expand: this.expand,
