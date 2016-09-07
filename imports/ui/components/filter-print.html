@@ -7,15 +7,31 @@
 <dom-module id="filter-print">
     <template>
         <style>
+            :host{
+                margin: auto;
+                max-width: 625px;
+                display: block;
+            }
+
             paper-slider{
                 min-width: 300px;
             }
+
+            .card{
+                float: left;
+            }
         </style>
         <paper-card>
-            <data-card label="Pressure">
-                <paper-slider max="120" always-show-pin></paper-slider>
-                <paper-slider max="120" always-show-pin></paper-slider>
-            </data-card>
+            <table>
+                <tr>
+                    <td>
+                        <data-card class="card" label="Pressure">
+                            <paper-slider id="ex1pressure" max="120" always-show-pin></paper-slider>
+                            <paper-slider id="ex2pressure" max="120" always-show-pin></paper-slider>
+                        </data-card>
+                    </td>
+                </tr>
+            <table>
         </paper-card>
     </template>
 
