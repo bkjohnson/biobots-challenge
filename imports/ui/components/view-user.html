@@ -43,7 +43,7 @@
         <paper-spinner-lite active></paper-spinner-lite>
       </template>
 
-      <filter-print id="filterInput"></filter-print>
+      <filter-print id="filterInput" hidden></filter-print>
     <template is="dom-repeat" items="{{data}}">
         <view-print data ='{{item}}'></view-print>
     </template>
@@ -67,7 +67,10 @@
                   value: false
               },
               _email: String,    // Used to store the email address, since this.email is read-only
-              noData: Boolean
+              noData: {
+                  type: Boolean,
+                  value: false  // default to false at first since this.data is undefined, not empty.
+              }
           },
 
           listeners: {
@@ -109,6 +112,7 @@
                   this.noData = (this.data.length == 0);
                   this.$.printLabel.hidden = this.noData;   // hide these labels if there is no data to show
                   this.$.userLabel.hidden = this.noData;
+                  this.$.filterInput.hidden = this.noData;
 
                   this.printCount = [{"prints": this.data.length}];
                   this.loading = false;
