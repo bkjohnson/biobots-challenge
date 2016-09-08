@@ -61,7 +61,10 @@
           is: 'view-print',
 
           properties: {
-              data: Object,
+              data: {
+                  type: Object,
+                  observer: "dataChanged"
+              },
               files: Object,
               wellplates: Object,
               ex1p: Number,
@@ -75,7 +78,7 @@
               elasticity: Number
           },
 
-          attached: function(){
+          dataChanged: function(){
               this.files =
                     [{"input": this.data.print_info.files.input},
                      {"output": this.data.print_info.files.output}];
@@ -90,7 +93,6 @@
               this.live = this.data.print_data.livePercent;
               this.dead = this.data.print_data.deadPercent;
               this.elasticity = this.data.print_data.elasticity;
-
           }
       });
   </script>
