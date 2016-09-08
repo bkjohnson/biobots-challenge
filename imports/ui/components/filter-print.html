@@ -29,6 +29,10 @@
                 background-color: var(--paper-teal-400);
             }
 
+            paper-button.clear{
+                background-color: var(--paper-red-400);
+            }
+
             .card{
                 float: left;
             }
@@ -42,10 +46,19 @@
                             <paper-slider id="ex2pressure" max="120" always-show-pin></paper-slider>
                         </data-card>
                     </td>
+                    <td>
+                        <data-card class="card" label="Live/Dead">
+                            <paper-slider id="livePercent" max="100" always-show-pin></paper-slider>
+                            <paper-slider id="deadPercent" max="100" always-show-pin></paper-slider>
+                        </data-card>
+                    </td>
                 </tr>
                 <tr>
                     <td>
                         <paper-button class="filter" raised on-tap="filterData">Filter</paper-button>
+                    </td>
+                    <td>
+                        <paper-button class="clear" raised on-tap="clearData">Clear</paper-button>
                     </td>
                 </tr>
             <table>
@@ -62,6 +75,13 @@
 
                 let args={"ex1p": ex1p, "ex2p": ex2p};
                 this.fire("filter-data", args);
+            },
+
+            clearData: function(){
+                 this.$.ex1pressure.value = 0;
+                 this.$.ex2pressure.value = 0;
+                 this.$.livePercent.value = 0;
+                 this.$.deadPercent.value = 0;
             }
         });
     </script>
