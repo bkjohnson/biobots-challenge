@@ -116,7 +116,9 @@
           },
 
           attached: function(){
-              this.loadData(this.serial);
+              if (this.serial != null){
+                  this.loadData(this.serial);
+              }
           }
       });
   </script>
