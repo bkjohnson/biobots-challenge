@@ -4,6 +4,7 @@
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 
 <link rel="import" href="../components/data-card.html">
+<link rel="import" href="../components/filter-slider.html">
 
 <dom-module id="filter-print">
     <template>
@@ -12,10 +13,6 @@
                 margin: auto;
                 max-width: 625px;
                 display: block;
-            }
-
-            paper-slider{
-                min-width: 300px;
             }
 
             paper-button{
@@ -37,19 +34,20 @@
                 float: left;
             }
         </style>
+
         <paper-card>
             <table>
                 <tr>
                     <td>
                         <data-card class="card" label="Pressure">
-                            <paper-slider id="ex1pressure" max="120" always-show-pin></paper-slider>
-                            <paper-slider id="ex2pressure" max="120" always-show-pin></paper-slider>
+                            <filter-slider id="ex1pressure" max="120"></filter-slider>
+                            <filter-slider id="ex2pressure" max="120"></filter-slider>
                         </data-card>
                     </td>
                     <td>
                         <data-card class="card" label="Live/Dead">
-                            <paper-slider id="livePercent" max="100" always-show-pin></paper-slider>
-                            <paper-slider id="deadPercent" max="100" always-show-pin></paper-slider>
+                            <filter-slider id="livePercent" max="100"></filter-slider>
+                            <filter-slider id="deadPercent" max="100"></filter-slider>
                         </data-card>
                     </td>
                 </tr>

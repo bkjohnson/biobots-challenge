@@ -1,0 +1,25 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-slider/paper-slider.html">
+
+<dom-module id="filter-slider">
+    <template>
+        <style>
+            paper-slider{
+                min-width: 300px;
+            }
+        </style>
+
+        <paper-slider id="slider" max="[[max]]" value="{{value}}" always-show-pin></paper-slider>
+    </template>
+
+    <script>
+        Polymer({
+            is: 'filter-slider',
+
+            properties: {
+                max: Number,
+                value: Number
+            }
+        });
+    </script>
+</dom-module>
