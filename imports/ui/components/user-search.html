@@ -2,6 +2,8 @@
 <link rel="import" href="../bower_components/paper-card/paper-card.html">
 <link rel="import" href="../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/iron-a11y-keys/iron-a11y-keys.html">
+
 
 <!-- Allows the user to enter a serial number to search on. -->
 <dom-module id="user-search">
@@ -28,7 +30,7 @@
                 background-color: #29B6F6;
             }
         </style>
-
+        <iron-a11y-keys target="[[termInput]]" keys="enter" on-keys-pressed="notifyTermChanged"></iron-a11y-keys>
         <paper-card>
             <paper-input id="termInput" no-label-float label="Serial"></paper-input>
             <paper-button raised on-tap="notifyTermChanged">Search</paper-button>
