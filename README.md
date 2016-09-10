@@ -11,6 +11,7 @@ were to continue this project, here are some of the things I would add:
   would compare the average live/dead percent of the current results to the live/dead imaging overall, thus allowing you to see if there are certain
   "input" combinations that produce better results.
 * Improved styling and responsiveness.
+* Adding the ability to search by email - both full and partial.
 
 
 # Approach
