@@ -43,7 +43,7 @@
         <paper-spinner-lite active></paper-spinner-lite>
       </template>
 
-      <filter-print id="filterInput" hidden></filter-print>
+      <!-- <filter-print id="filterInput" hidden></filter-print> -->
     <template is="dom-repeat" items="{{data}}">
         <view-print data ='{{item}}'></view-print>
     </template>
@@ -73,20 +73,20 @@
               }
           },
 
-          listeners: {
-              "filterInput.filter-data": "filterData"
-          },
-
-          filterData: function(e){
-              let sample = this.data.filter(function(object){
-                  if (object.print_info.pressure.extruder1 == e.detail.ex1p &&
-                  object.print_info.pressure.extruder2 == e.detail.ex2p){
-                      return true;
-                  }
-                  return false;
-              });
-              this.data = sample;
-          },
+        //   listeners: {
+        //       "filterInput.filter-data": "filterData"
+        //   },
+          //
+        //   filterData: function(e){
+        //       let sample = this.data.filter(function(object){
+        //           if (object.print_info.pressure.extruder1 == e.detail.ex1p &&
+        //           object.print_info.pressure.extruder2 == e.detail.ex2p){
+        //               return true;
+        //           }
+        //           return false;
+        //       });
+        //       this.data = sample;
+        //   },
 
           lookupEmail: function(hasEmail, serial){
               if (hasEmail == false){
@@ -112,7 +112,7 @@
                   this.noData = (this.data.length == 0);
                   this.$.printLabel.hidden = this.noData;   // hide these labels if there is no data to show
                   this.$.userLabel.hidden = this.noData;
-                  this.$.filterInput.hidden = this.noData;
+                //   this.$.filterInput.hidden = this.noData;
 
                   this.printCount = [{"prints": this.data.length}];
                   this.loading = false;
